@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocal Alchemy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: serif; /* 明朝体に固定 */
+            overflow-y: auto; /* 垂直スクロールを有効にする */
+            height: 100vh; /* ビューポートの高さを100%に設定 */
+            margin: 0; /* デフォルトのマージンをリセット */
+        }
+        .hashtag {
+            color: #ffcc00; /* ハッシュタグの色を変更 */
+        }
+        .character-img {
+            cursor: pointer; /* 画像をクリック可能にする */
+        }
+    </style>
+</head>
+<body class="bg-[#1e0e2f] text-white flex flex-col h-screen">
+
+    <!-- ヘッダー -->
+    <header class="text-center mb-6">
+        <h1 class="text-4xl font-bold">Vocal Alchemy</h1>
+    </header>
+
+    <div class="flex flex-glow">
+    <!-- カラムA -->
+    <div class="w-1/6 bg-[#2d1646] rounded-lg shadow-md mx-4 p-4">
+      <!-- 検索ウィンドウ -->
+      <input type="text" placeholder="検索..." class="w-full p-2 mb-4 rounded bg-[#3e2a54] text-white" />
+
+      <!-- リストセクション -->
+      <div class="mb-4 p-4 bg-[#3e2a54] rounded-lg shadow-md">
+        <h2 class="font-bold mb-2">CoC</h2>
+        <ul class="text-sm">
+          <li><a href="#" class="text-white" onclick="showCharacter('isuka')">胡桃炸裂症候群</a></li>
+          <li><a href="#" class="text-white" onclick="showCharacter('aisuke')">Good morning All</a></li>
+          <li><a href="#" class="text-white" onclick="showCharacter('choka')">海も枯れるまで</a></li>
+          <li><a href="#" class="text-white" onclick="showCharacter('isuka')">同居人</a></li>
+          <li><a href="#" class="text-white" onclick="showCharacter('aisuke')">隔てる目睛</a></li>
+          <li><a href="#" class="text-white" onclick="showCharacter('choka')">蛾と踊る</a></li>
+        </ul>
+      </div>
+
+      <div class="mb-4 p-4 bg-[#3e2a54] rounded-lg shadow-md">
+        <h2 class="font-bold mb-2">エモクロア</h2>
+        <ul class="text-sm">
+          <li><a href="#" class="text-white">ロールシャッハシンドローム</a></li>
+        </ul>
+      </div>
+
+      <div class="p-4 bg-[#3e2a54] rounded-lg shadow-md">
+        <h2 class="font-bold mb-2">DX3</h2>
+        <ul class="text-sm">
+          <li><a href="#" class="text-white">春光プレリュード</a></li>
+        </ul>
+      </div>
+    </div>
+
+ <!-- 親コンテナ -->
+<div class="container w-4/6 mx-auto flex flex-col mr-4" style="min-height: 400px;"> <!-- 最小高さを設定 -->
+<!-- カラムB -->
+<div class="h-1/2 bg-[#2d1646] rounded-lg shadow-md mb-4 p-4 flex flex-col justify-between" style="height: 400px;">
+    <div class="flex w-full">
+        <div class="w-1/2 pr-1 flex flex-col items-center">
+            <img id="character-image" src="images/isuka.jpg" alt="Selected Character" class="w-full max-w-[180px] h-auto rounded-md mb-2 character-img" /> <!-- 画像を大きく -->
+            <textarea placeholder="テキストを入力..." rows="2" class="w-full h-16 p-2 mb-2 rounded bg-[#3e2a54] text-white resize-none"></textarea> <!-- テキストエリアを小さく -->
+            <button class="bg-[#ffcc00] text-black p-2 rounded w-full">読み上げる</button> <!-- ボタン -->
+        </div>
+        <div class="w-1/2 pl-2 flex items-center"> <!-- 中央寄せのためにflexを追加 -->
+            <div id="profile">
+                <h2 class="font-bold mb-2" id="character-name">玄冬 鶍 / Isuka Gento</h2> <!-- 2段目の情報 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- スクロール可能なキャラクターのリスト -->
+<div class="bg-[#2d1646] rounded-lg shadow-md max-h-1000"> <!-- 最大高さを設定 -->
+  <div class="flex flex-wrap justify-between gap-2 p-4">
+      <!-- 各キャラクターの画像 -->
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('miyazaki')"> <img src="images/miyazaki.jpg" alt="宮崎 攻" class="w-full h-32 rounded-md mb-2" />
+</div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('namekata')"> <img src="images/namekata.jpg" alt="行方 薫" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('shiga')"> <img src="images/shiga.jpg" alt="志賀 拓音" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('shirayuki')"> <img src="images/shirayuki.jpg" alt="黒狼院 白雪" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('owari')"> <img src="images/owari.jpg" alt="黒白院 終里" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('uta')"> <img src="images/uta.jpg" alt="外道 謳" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kurage')"> <img src="images/kurage.jpg" alt="海月 枢" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('aisuke')"> <img src="images/aisuke.jpg" alt="善部 愛輔" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('wang')"> <img src="images/wang.jpg" alt="王 鼬瓏" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('rei')"> <img src="images/rei.jpg" alt="レイ 天河 エメレッヒ" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kaseda')"> <img src="images/kaseda.jpg" alt="綛田 望" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('sero')"> <img src="images/sero.jpg" alt="セロ" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('chikage')"> <img src="images/chikage.jpg" alt="鴉羽 千景" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('yukichika')"> <img src="images/yukichika.jpg" alt="大御門 幸史" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('sirius')"> <img src="images/sirius.jpg" alt="シリウス ルークラフト" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('haruto')"> <img src="images/haruto.jpg" alt="柊紀 陽斗" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('mia')"> <img src="images/mia.jpg" alt="深水 暁" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('suri')"> <img src="images/suri.jpg" alt="Suri" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('hiroki')"> <img src="images/hiroki.jpg" alt="蔵栖 ひろき" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('meg')"> <img src="images/meg.jpg" alt="新妻 恵" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('bred')"> <img src="images/bred.jpg" alt="ブレット" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('makoto')"> <img src="images/makoto.jpg" alt="マコト メイナード" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('ren')"> <img src="images/ren.jpg" alt="淀水 漣" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('simeji')"> <img src="images/simeji.jpg" alt="絵楽 傑" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('syo')"> <img src="images/syo.jpg" alt="音琴 祥" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('enjyu')"> <img src="images/enjyu.jpg" alt="霧崎 槐" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('masami')"> <img src="images/masami.jpg" alt="花淵 真実" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('wotinami')"> <img src="images/wotinami.jpg" alt="巌主" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('yokoshima')"> <img src="images/yokoshima.jpg" alt="プロショッパー横島" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('syou')"> <img src="images/syou.jpg" alt="深水 宵" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('choka')"> <img src="images/choka.jpg" alt="淀水 蝶花" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('isao')"> <img src="images/isao.jpg" alt="蓮浄院 功" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('lore')"> <img src="images/lore.jpg" alt="Lore -ロア-" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kishi')"> <img src="images/kishi.jpg" alt="岸 暖平" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kei')"> <img src="images/kei.jpg" alt="天艸 炯" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('isuka')"> <img src="images/isuka.jpg" alt="玄冬 鶍" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('tyuuiki')"> <img src="images/tyuuiki.jpg" alt="漆式" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('ritsu')"> <img src="images/ritsu.jpg" alt="尺一 律" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('sunbow')"> <img src="images/sunbow.jpg" alt="ヨシヅキ 参謀" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('zame')"> <img src="images/zame.jpg" alt="ザメニス" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kanoto')"> <img src="images/kanoto.jpg" alt="辛 篤幸" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('filo')"> <img src="images/filo.jpg" alt="フィレイン" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('marfy')"> <img src="images/marfy.jpg" alt="コリー マーフィー" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('izumi')"> <img src="images/izumi.jpg" alt="不二 一澄" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('naoto')"> <img src="images/naoto.jpg" alt="御法 直人" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kaede')"> <img src="images/kaede.jpg" alt="浅桜 楓" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('rushiwo')"> <img src="images/rushiwo.jpg" alt="徳門 ルシヲ" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('kaguya')"> <img src="images/kaguya.jpg" alt="暗 輝夜" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('tsukumo')"> <img src="images/tsukumo.jpg" alt="白" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('inami')"> <img src="images/inami.jpg" alt="七石 イナミ" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('tomoe')"> <img src="images/tomoe.jpg" alt="鸙野 巴" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('zaiga')"> <img src="images/zaiga.jpg" alt="罪賀 流人" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('sio')"> <img src="images/sio.jpg" alt="海琳 汐" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('hayate')"> <img src="images/hayate.jpg" alt="矢上 颯" class="w-full h-32 rounded-md mb-2" /> </div>
+<div class="flex-shrink-0 w-1/8 cursor-pointer" onclick="showCharacter('mibu')"> <img src="images/mibu.jpg" alt="壬生 十一" class="w-full h-32 rounded-md mb-2" /> </div>
+          <!-- ここに他のキャラクターを追加 -->
+        </div>
+      </div>
+    </div>
+
+        <!-- 右側セッション情報部分 -->
+        <div class="w-1/6 bg-[#2d1646] rounded-lg shadow-md mr-4 p-4">
+            <div id="sessions">
+                <p>キャラクターを選択してセッション情報を表示します。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="w-full text-center p-4 bg-[#2d1646] text-white mt-4">
+        Thanks for using!
+    </footer>
+
+  <script>
+    // キャラクターの情報
+    const characters = { 
+    'miyazaki': {
+        'image': 'miyazaki',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'namekata': {
+        'image': 'namekata',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'shiga': {
+        'image': 'shiga',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-05-27 00:00:00</h3>
+            <p>お前は誰だ<a href="https://twitter.com/search?q=%23藍宮ヨシヒロは誰だ" target="_blank">#藍宮ヨシヒロは誰だ</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+四宮伊織
+中尾ヤスヒロ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'shirayuki': {
+        'image': 'shirayuki',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'owari': {
+        'image': 'owari',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'uta': {
+        'image': 'uta',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'kurage': {
+        'image': 'kurage',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'aisuke': {
+        'image': 'aisuke',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2020-02-11 00:00:00</h3>
+            <p>壊胎<a href="https://twitter.com/search?q=%23受け継がれる壊胎" target="_blank">#受け継がれる壊胎</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024/11/10・11</h3>
+            <p>Re:chain<a href="https://twitter.com/search?q=%23高月宮Re_chain" target="_blank">#高月宮Re_chain</a></p>
+            <p>KP：necoze</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織
+高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'wang': {
+        'image': 'wang',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2020-06-28 00:00:00</h3>
+            <p>狂気山脈～邪神の山嶺～<a href="https://twitter.com/search?q=%23受け継がれる狂気山脈" target="_blank">#受け継がれる狂気山脈</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+登川もかな</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2022-03-17 00:00:00</h3>
+            <p>カタシロ<a href="https://twitter.com/search?q=%23アタシロ紫" target="_blank">#アタシロ紫</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2022-09-03 00:00:00</h3>
+            <p>遭難者C<a href="https://twitter.com/search?q=%23遭難者零参" target="_blank">#遭難者零参</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：白夜零兎</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'rei': {
+        'image': 'rei',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2020-08-13 00:00:00</h3>
+            <p>未完成漂流記<a href="https://twitter.com/search?q=%23おかえり未完成漂流記" target="_blank">#おかえり未完成漂流記</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+しぐれなお
+こばと
+登川もかな</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'kaseda': {
+        'image': 'kaseda',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2021/5/22・23</h3>
+            <p>傀逅<a href="https://twitter.com/search?q=%23受け継がれる傀逅" target="_blank">#受け継がれる傀逅</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'sero': {
+        'image': 'sero',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2021-06-28 00:00:00</h3>
+            <p>オリカミ<a href="https://twitter.com/search?q=%23ぜろカミ02" target="_blank">#ぜろカミ02</a></p>
+            <p>KP：白夜零兎</p>
+            <p>SKP：</p>
+            <p>PL：星乃歌カズ
+彩音れおん</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2022-09-25 00:00:00</h3>
+            <p>腐肉喰らいの部屋<a href="https://twitter.com/search?q=%23腐肉水彩星月" target="_blank">#腐肉水彩星月</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：星乃歌カズ
+水凪自由
+彩音れおん</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'chikage': {
+        'image': 'chikage',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2021-06-30 00:00:00</h3>
+            <p>Monochrome Girl Re:<a href="https://twitter.com/search?q=%23初心者モノクロ" target="_blank">#初心者モノクロ</a></p>
+            <p>KP：白夜零兎</p>
+            <p>SKP：</p>
+            <p>PL：紺野和泉
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2022-09-22 00:00:00</h3>
+            <p>春光プレリュード<a href="https://twitter.com/search?q=%23春プレ02" target="_blank">#春プレ02</a></p>
+            <p>KP：白夜零兎</p>
+            <p>SKP：</p>
+            <p>PL：中尾ヤスヒロ
+藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'yukichika': {
+        'image': 'yukichika',
+        'profile': '',
+        'sessions': ''
+    }
+}
+{
+    'sirius': {
+        'image': 'sirius',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2021/11/13・14</h3>
+            <p>嗤う人間師<a href="https://twitter.com/search?q=%23嗤う人間師_case03" target="_blank">#嗤う人間師_case03</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：紺野和泉
+小日向りゅーじ
+水凪自由</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'haruto': {
+        'image': 'haruto',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2021/11/18・19</h3>
+            <p>とある幸せな家族の話<a href="https://twitter.com/search?q=%23柊紀家" target="_blank">#柊紀家</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+四宮伊織
+しぐれなお</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2022-08-19 00:00:00</h3>
+            <p>白波と青に泳ぐ<a href="https://twitter.com/search?q=%23僕らと青に泳ぐ" target="_blank">#僕らと青に泳ぐ</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：すぎうらきりと
+藍月すりっぷ
+四宮伊織
+白夜零兎</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024-07-25 00:00:00</h3>
+            <p>実験体δは青に微笑む<a href="https://twitter.com/search?q=%23しぐヨシは青に微笑む" target="_blank">#しぐヨシは青に微笑む</a></p>
+            <p>KP：霧島ジャック</p>
+            <p>SKP：</p>
+            <p>PL：しぐれなお</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'mia': {
+        'image': 'mia',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2021/11/25・26</h3>
+            <p>彼方からの君に捧ぐ<a href="https://twitter.com/search?q=%23あたたかな君に捧ぐ" target="_blank">#あたたかな君に捧ぐ</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+水凪自由
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2023-07-04 00:00:00</h3>
+            <p>闇夜児童奇譚<a href="https://twitter.com/search?q=%23月宮児童奇譚" target="_blank">#月宮児童奇譚</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'suri': {
+        'image': 'suri',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-06-02 00:00:00</h3>
+            <p>おまえがちょうどいい<a href="https://twitter.com/search?q=%23おまえが水彩日月星" target="_blank">#おまえが水彩日月星</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+彩音れおん
+小日向りゅーじ
+星乃歌カズ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'hiroki': {
+        'image': 'hiroki',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-06-07 00:00:00</h3>
+            <p>犬神憑き<a href="https://twitter.com/search?q=%23こよみ憑き" target="_blank">#こよみ憑き</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：小日向りゅーじ
+水凪自由</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2022-07-09 00:00:00</h3>
+            <p>リボルバー<a href="https://twitter.com/search?q=%23水彩日月星バー" target="_blank">#水彩日月星バー</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+彩音れおん
+小日向りゅーじ
+星乃歌カズ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2023-02-02 00:00:00</h3>
+            <p>ここで長く生きて<a href="https://twitter.com/search?q=%23参謀生きて" target="_blank">#参謀生きて</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'meg': {
+        'image': 'meg',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022/6/23~25</h3>
+            <p>ソープスクール<a href="https://twitter.com/search?q=%23nan" target="_blank">#nan</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+四宮伊織
+中尾ヤスヒロ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="中編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'bred': {
+        'image': 'bred',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-06-29 00:00:00</h3>
+            <p>LADYBUG<a href="https://twitter.com/search?q=%23月宮レディバグ" target="_blank">#月宮レディバグ</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'makoto': {
+        'image': 'makoto',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-08-06 00:00:00</h3>
+            <p>ぼくらのシャングリア、
+あの子のほうき星<a href="https://twitter.com/search?q=%23あたなる僕シャン" target="_blank">#あたなる僕シャン</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織
+彩音れおん
+紺野和泉</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'ren': {
+        'image': 'ren',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-08-15 00:00:00</h3>
+            <p>静かなる明日を。<a href="https://twitter.com/search?q=%23藍ヅキしずあす" target="_blank">#藍ヅキしずあす</a></p>
+            <p>KP：空衣御侍</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'simeji': {
+        'image': 'simeji',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022/8/25~27</h3>
+            <p>救世主<a href="https://twitter.com/search?q=%23あたなる救世主" target="_blank">#あたなる救世主</a></p>
+            <p>KP：高音超子</p>
+            <p>SKP：</p>
+            <p>PL：高生紳士
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="中編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'syo': {
+        'image': 'syo',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022/11/15・18</h3>
+            <p>君といたジュブナイル<a href="https://twitter.com/search?q=%23きりたかんぼジュブナイル" target="_blank">#きりたかんぼジュブナイル</a></p>
+            <p>KP：三上</p>
+            <p>SKP：</p>
+            <p>PL：すぎうらきりと
+高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="ソロ" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'enjyu': {
+        'image': 'enjyu',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-11-22 00:00:00</h3>
+            <p>Greed in my heart<a href="https://twitter.com/search?q=%23グリマイ4" target="_blank">#グリマイ4</a></p>
+            <p>KP：白夜零兎</p>
+            <p>SKP：</p>
+            <p>PL：紺野和泉
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'masami': {
+        'image': 'masami',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022/11/28・30</h3>
+            <p>プルガトリウムの夜<a href="https://twitter.com/search?q=%23厨二組の夜" target="_blank">#厨二組の夜</a></p>
+            <p>KP：中尾ヤスヒロ</p>
+            <p>SKP：</p>
+            <p>PL：白夜零兎</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024-04-29 00:00:00</h3>
+            <p>フルダイブエスケープ<a href="https://twitter.com/search?q=%23厨二組フルダイブ" target="_blank">#厨二組フルダイブ</a></p>
+            <p>KP：白夜零兎</p>
+            <p>SKP：</p>
+            <p>PL：</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024/5/21・22</h3>
+            <p>Death:Incarnation<a href="https://twitter.com/search?q=%23厨二組デスカネ" target="_blank">#厨二組デスカネ</a></p>
+            <p>KP：中尾ヤスヒロ</p>
+            <p>SKP：</p>
+            <p>PL：白夜零兎</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'wotinami': {
+        'image': 'wotinami',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2022-12-05 00:00:00</h3>
+            <p>ヲチミナ様<a href="https://twitter.com/search?q=%23アタナル様" target="_blank">#アタナル様</a></p>
+            <p>KP：文町</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'yokoshima': {
+        'image': 'yokoshima',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023-01-25 00:00:00</h3>
+            <p>コーヒー一杯分の恐怖<a href="https://twitter.com/search?q=%23やしのきコーヒー" target="_blank">#やしのきコーヒー</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織
+紺野和泉
+神辰Ｊ威弦</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'syou': {
+        'image': 'syou',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/2/17~18</h3>
+            <p>遥か彼方まで<a href="https://twitter.com/search?q=%23はるかな_05" target="_blank">#はるかな_05</a></p>
+            <p>KP：すぎうらきりと</p>
+            <p>SKP：さけこ。</p>
+            <p>PL：藍月すりっぷ
+水凪自由
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'choka': {
+        'image': 'choka',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/3/18・19</h3>
+            <p>夕星シンフォニア<a href="https://twitter.com/search?q=%23みなづきシンフォニア" target="_blank">#みなづきシンフォニア</a></p>
+            <p>KP：四宮伊織</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'isao': {
+        'image': 'isao',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/3/21・23</h3>
+            <p>永久の一日<a href="https://twitter.com/search?q=%23白藤ヨシヒロの一日" target="_blank">#白藤ヨシヒロの一日</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：白夜零兎
+佐藤ホームズ
+中尾ヤスヒロ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'lore': {
+        'image': 'lore',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/4/3~5</h3>
+            <p>欲望街<a href="https://twitter.com/search?q=%23あたなる欲望街" target="_blank">#あたなる欲望街</a></p>
+            <p>KP：高音超子</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織
+高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="一日目" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="二日目" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="三日目" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'kishi': {
+        'image': 'kishi',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023-05-15 00:00:00</h3>
+            <p>エーリッヒ！<a href="https://twitter.com/search?q=%23みたかよエーリッヒ" target="_blank">#みたかよエーリッヒ</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+高生紳士
+神辰Ｊ威弦</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024-04-09 00:00:00</h3>
+            <p>この病院は渇いている<a href="https://twitter.com/search?q=%23みななかよし渇いて" target="_blank">#みななかよし渇いて</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由
+しぐれなお
+星乃歌カズ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'kei': {
+        'image': 'kei',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/5/22・23</h3>
+            <p>星の神話、エンドロール<a href="https://twitter.com/search?q=%23ヨシヒロくるエンドロール" target="_blank">#ヨシヒロくるエンドロール</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：中尾ヤスヒロ
+藍月なくる</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'isuka': {
+        'image': 'isuka',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/6/14~16</h3>
+            <p>同居人<a href="https://twitter.com/search?q=%23月宮同居人" target="_blank">#月宮同居人</a></p>
+            <p>KP：高音超子</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="中編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2023-10-17 00:00:00</h3>
+            <p>隔てる目晴<a href="https://twitter.com/search?q=%23隔てる高月宮" target="_blank">#隔てる高月宮</a></p>
+            <p>KP：四宮伊織</p>
+            <p>SKP：</p>
+            <p>PL：高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024/4/6・7</h3>
+            <p>蛾と踊る<a href="https://twitter.com/search?q=%23月宮と踊る" target="_blank">#月宮と踊る</a></p>
+            <p>KP：necoze</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'tyuuiki': {
+        'image': 'tyuuiki',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023-06-26 00:00:00</h3>
+            <p>漂流宙域<a href="https://twitter.com/search?q=%23さんれお漂流" target="_blank">#さんれお漂流</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：彩音れおん</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'ritsu': {
+        'image': 'ritsu',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023-07-08 00:00:00</h3>
+            <p>片鱗<a href="https://twitter.com/search?q=%23月宮片鱗" target="_blank">#月宮片鱗</a></p>
+            <p>KP：さけこ。</p>
+            <p>SKP：ひよりん*</p>
+            <p>PL：四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'sunbow': {
+        'image': 'sunbow',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023-08-23 00:00:00</h3>
+            <p>新約・きさらぎ駅<a href="https://twitter.com/search?q=%23新約あたなる駅" target="_blank">#新約あたなる駅</a></p>
+            <p>KP：まだら牛</p>
+            <p>SKP：</p>
+            <p>PL：高生紳士
+水凪自由
+紺野和泉
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024-10-10 00:00:00</h3>
+            <p>超自然クイズinエモクロア<a href="https://twitter.com/search?q=%23超Qズル寝坊" target="_blank">#超Qズル寝坊</a></p>
+            <p>KP：九畝くぜ</p>
+            <p>SKP：</p>
+            <p>PL：彩音れおん
+神辰J威弦</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'zame': {
+        'image': 'zame',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/9/2~7</h3>
+            <p>ARCANA<a href="https://twitter.com/search?q=%23あたなるアルカナ" target="_blank">#あたなるアルカナ</a></p>
+            <p>KP：souka</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+しぐれなお
+高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="Part1" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="Part2" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="Part3" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="Part4" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="Part5" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="PartFinal" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'kanoto': {
+        'image': 'kanoto',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023-09-12 00:00:00</h3>
+            <p>COIN<a href="https://twitter.com/search?q=%23天国と地獄のCOIN" target="_blank">#天国と地獄のCOIN</a></p>
+            <p>KP：四宮伊織</p>
+            <p>SKP：</p>
+            <p>PL：彩音れおん</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>
+<h3 class="mt-4 mb-2">2024-01-23 00:00:00</h3>
+            <p>キブンゼ<a href="https://twitter.com/search?q=%23ヨシヅキブンゼ" target="_blank">#ヨシヅキブンゼ</a></p>
+            <p>KP：necoze</p>
+            <p>SKP：</p>
+            <p>PL：</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'filo': {
+        'image': 'filo',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/10/19・20</h3>
+            <p>ウルトラヒロイック<a href="https://twitter.com/search?q=%23たかすぎすりんぼヒロイック" target="_blank">#たかすぎすりんぼヒロイック</a></p>
+            <p>KP：コーサカ</p>
+            <p>SKP：</p>
+            <p>PL：すぎうらきりと
+藍月すりっぷ
+高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'marfy': {
+        'image': 'marfy',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/11/27・28・30,12/1・3・4</h3>
+            <p>Paranomrmal Crime<a href="https://twitter.com/search?q=%23あたなるパラクラ" target="_blank">#あたなるパラクラ</a></p>
+            <p>KP：スイ</p>
+            <p>SKP：</p>
+            <p>PL：高生紳士
+藍月すりっぷ
+四宮伊織
+水凪自由
+白夜零兎</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="第1話" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="第2話" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="第3話" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="第4話" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="第5話" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="第6話" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'izumi': {
+        'image': 'izumi',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024-01-06 00:00:00</h3>
+            <p>誰がロックを殺すのか<a href="https://twitter.com/search?q=%23誰ロクCemetery" target="_blank">#誰ロクCemetery</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+水凪自由
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'naoto': {
+        'image': 'naoto',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/1/13・14</h3>
+            <p>ぼくらの空想都市計画<a href="https://twitter.com/search?q=%23ゲーム制作者たちの空想都市計画" target="_blank">#ゲーム制作者たちの空想都市計画</a></p>
+            <p>KP：小日向りゅーじ</p>
+            <p>SKP：</p>
+            <p>PL：星乃歌カズ
+白夜零兎
+藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'kaede': {
+        'image': 'kaede',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/2/11・12</h3>
+            <p>沼男は誰だ？<a href="https://twitter.com/search?q=%23あたたかくなる沼男" target="_blank">#あたたかくなる沼男</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：四宮伊織
+白夜零兎
+水凪自由
+藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'rushiwo': {
+        'image': 'rushiwo',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024-02-18 00:00:00</h3>
+            <p>激突！コズミックウェディング
+vsビックバンブライド！！<a href="https://twitter.com/search?q=%23コズバン06" target="_blank">#コズバン06</a></p>
+            <p>KP：すずきさん</p>
+            <p>SKP：</p>
+            <p>PL：紺野和泉
+水凪自由
+白夜零兎</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'kaguya': {
+        'image': 'kaguya',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/4/14~16・18~19</h3>
+            <p>スイサイダルアクト<a href="https://twitter.com/search?q=%23あたなるスイアク" target="_blank">#あたなるスイアク</a></p>
+            <p>KP：桧垣</p>
+            <p>SKP：</p>
+            <p>PL：しぐれなお
+高生紳士
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="DAY1" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY2" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY3" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY4" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'tsukumo': {
+        'image': 'tsukumo',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/4/14~16・18~19</h3>
+            <p>スイサイダルアクト<a href="https://twitter.com/search?q=%23あたなるスイアク" target="_blank">#あたなるスイアク</a></p>
+            <p>KP：桧垣</p>
+            <p>SKP：</p>
+            <p>PL：しぐれなお
+高生紳士
+四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="DAY1" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY2" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY3" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY4" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'inami': {
+        'image': 'inami',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/4/25~27</h3>
+            <p>レプリカントの葬列<a href="https://twitter.com/search?q=%23たかんぼの葬列" target="_blank">#たかんぼの葬列</a></p>
+            <p>KP：すぎうらきりと</p>
+            <p>SKP：</p>
+            <p>PL：高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="chapter1" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="chapter2" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="chapter3" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'tomoe': {
+        'image': 'tomoe',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/5/14~18</h3>
+            <p>あトの祀り -緋の宴-<a href="https://twitter.com/search?q=%23nan" target="_blank">#nan</a></p>
+            <p>KP：さけこ。</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ
+四宮伊織
+高生紳士</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="事前導入" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY1" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY2" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY3" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY4" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'zaiga': {
+        'image': 'zaiga',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/8/26~28</h3>
+            <p>火点し頃の蜘蛛踊り<a href="https://twitter.com/search?q=%23なすとんぼの蜘蛛踊り" target="_blank">#なすとんぼの蜘蛛踊り</a></p>
+            <p>KP：高生紳士</p>
+            <p>SKP：</p>
+            <p>PL：白夜零兎
+しぐれなお
+藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="中編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'sio': {
+        'image': 'sio',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/8/29・30</h3>
+            <p>海も枯れるまで<a href="https://twitter.com/search?q=%23水月も枯れるまで" target="_blank">#水月も枯れるまで</a></p>
+            <p>KP：小日向りゅーじ</p>
+            <p>SKP：</p>
+            <p>PL：水凪自由</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'hayate': {
+        'image': 'hayate',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024-09-21 00:00:00</h3>
+            <p>Good morning ALL<a href="https://twitter.com/search?q=%23月宮グドモ" target="_blank">#月宮グドモ</a></p>
+            <p>KP：さけこ。</p>
+            <p>SKP：ひよりん*</p>
+            <p>PL：四宮伊織</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="本編" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+{
+    'mibu': {
+        'image': 'mibu',
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2024/10/21~24</h3>
+            <p>胡桃炸裂症候群<a href="https://twitter.com/search?q=%23よしっぷ症候群" target="_blank">#よしっぷ症候群</a></p>
+            <p>KP：ひよりん*</p>
+            <p>SKP：</p>
+            <p>PL：藍月すりっぷ</p>
+            <div class="flex justify-between mb-2">
+                <iframe width="31%" height="100" src="DAY1" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY2" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY3" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="DAY4" frameborder="0" allowfullscreen></iframe>
+            </div>'
+    }
+}
+
+// キャラクターの情報
+const characters = { 
+    'isuka': {
+        'image': 'isuka', // 画像のファイル名（拡張子は関数内で付与）
+        'profile': '',
+        'sessions': '<h3 class="mt-4 mb-2">2023/6/14~16</h3><p>同居人<a href="https://twitter.com/search?q=%23月宮同居人" target="_blank">#月宮同居人</a></p><p>KP：高音超子</p><p>SKP：</p><p>PL：四宮伊織</p><div class="flex justify-between mb-2"><iframe width="31%" height="100" src="前編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="中編" frameborder="0" allowfullscreen></iframe><iframe width="31%" height="100" src="後編" frameborder="0" allowfullscreen></iframe></div>'
+    },
+    // 他のキャラクターも同様に定義
+};
+
+// キャラクターを選択する関数  
+function showCharacter(characterName) {
+    const character = characters[characterName];
+    if (character) {
+        // 画像を更新
+        document.getElementById("character-image").src = `images/${character.image}.jpg`;
+        
+        // プロフィールを更新（キャラクター名）
+        document.getElementById("character-name").innerText = characterName === 'isuka' ? "玄冬 鶍 / Isuka Gento" : "他のキャラクター名"; // キャラクター名を条件に応じて更新
+        
+        // セッション情報を更新
+        document.getElementById("sessions").innerHTML = character.sessions; 
+    } else {
+        console.error("キャラクターが見つかりません:", characterName);
+    }
+}
+
+// ページロード時のデフォルトキャラクター表示
+document.addEventListener("DOMContentLoaded", function () {
+    showCharacter('isuka'); // 初期表示のためのキャラクター情報を読み込む
+});
+  </script>
+
+</body>
+</html>
